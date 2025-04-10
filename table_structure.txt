@@ -1,0 +1,56 @@
++-------------+       +-------------+       +-------------+
+|  SUBJECTS   |       |   CLASSES   |       |  TEACHERS   |
++-------------+       +-------------+       +-------------+
+| PK:subject_id|<-----| PK:class_id |       | PK:teacher_id|
+|    name     |       |    name     |       |  first_name |
++-------------+       +-------------+       |  last_name  |
+      ^                                     |    email    |
+      |                                     | date_of_birth|
+      |                                     | joining_date|
+      |                                     +-------------+
+      |                                          ^
+      v                                          |
++-------------+       +-------------+            |
+| BATCH_SUBJECTS |<---|   BATCHES   |            |
++-------------+       +-------------+            |
+| PK:batch_id  |       | PK:batch_id|<-----------+
+| PK:subject_id|       |    name    |            |
++-------------+       | start_date |       +-------------+
+      ^              |  end_date   |       |BATCH_TEACHERS|
+      |              | FK:class_id |       +-------------+
+      |              +-------------+       | PK:batch_id |
+      |                    ^               | PK:teacher_id|
+      |                    |               | PK:subject_id|
+      v                    v               +-------------+
++-------------+       +-------------+
+|EXAM_SUBJECTS|       | BATCH_ENROLLMENTS |
++-------------+       +-------------+
+| PK:exam_subject_id | | PK:enrollment_id|
+| FK:exam_id    |     | FK:batch_id     |
+| FK:subject_id |     | FK:student_id   |
+| max_marks     |     | roll_number     |
+| exam_date     |     | enrollment_date |
++-------------+       +-------------+
+      ^                      ^
+      |                      |
+      v                      |
++-------------+       +-------------+
+| EXAM_RESULTS|       |  STUDENTS   |
++-------------+       +-------------+
+| PK:result_id |      | PK:student_id|
+| FK:exam_subject_id| | first_name  |
+| FK:student_id |     | last_name   |
+| marks_obtained |    | email       |
+| grade        |     | date_of_birth|
+| remarks      |     +-------------+
++-------------+             ^
+                           |
+                           |
+                    +-------------+
+                    |STUDENT_DETAILS|
+                    +-------------+
+                    |PK:student_details_id|
+                    |FK:student_id|
+                    |father_name  |
+                    |mother_name  |
+                    +-------------+
